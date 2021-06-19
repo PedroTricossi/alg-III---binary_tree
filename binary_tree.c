@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct tNo
 {
@@ -16,7 +17,7 @@ struct tNo *inicia(char valor)
   return n;
 }
 
-struct tNo *montaarvore(const char *str, int *i)
+struct tNo *montaarvore(char *str, int *i)
 {
   struct tNo *no = NULL;
 
@@ -38,28 +39,21 @@ void emordem(struct tNo *no)
   if (no != NULL)
   {
     emordem(no->esq);
-    printf("%c", no->valor);
+    printf("%d | ", no->valor);
     emordem(no->dir);
   }
 }
 
-void posordem(struct tNo *no)
+void transforma_inteiro(struct tNo *no)
 {
   if (no != NULL)
   {
-    posordem(no->esq);
-    posordem(no->dir);
-    printf("%c", no->valor);
-  }
-}
-
-void preordem(struct tNo *no)
-{
-  if (no != NULL)
-  {
-    printf("%c", no->valor);
-    preordem(no->esq);
-    preordem(no->dir);
+    transforma_inteiro(no->esq);
+    if (no->valor != 42 && no->valor != 43 && no->valor != 45 && no->valor != 47)
+    {
+      no->valor = no->valor - 48;
+    }
+    transforma_inteiro(no->dir);
   }
 }
 
@@ -71,13 +65,9 @@ int main(void)
   n = montaarvore("(*(5)(+(4)(3))\n", &i);
   /*n=montaarvore("(A(B(C(D(E)))))\n",&i);*/
   printf("percurso em ordem:");
+
+  transforma_inteiro(n);
+
   emordem(n);
-
-  printf("percurso em pós-ordem:");
-  posordem(n);
-
-  printf("percurso em pré-ordem:");
-  preordem(n);
-
   return 0;
 }

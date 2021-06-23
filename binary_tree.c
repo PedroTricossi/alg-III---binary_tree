@@ -26,7 +26,7 @@ void transforma_inteiro(struct tNo *no)
   no->valor_int = no->valor - 48;
 }
 
-/* Ajusta o valor do nó em que as entradas estão [10, 99] */
+/* Ajusta o valor do nó em que as entradas são números e dois ou mais algarismos */
 void ajusta_no(struct tNo *no, char decimal)
 {
   decimal = decimal - 48;

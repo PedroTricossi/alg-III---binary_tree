@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* Define a structure tNo */
 struct tNo
 {
   int valor_int;
@@ -9,6 +10,7 @@ struct tNo
   struct tNo *esq, *dir;
 };
 
+/* Inicia um nó da árvore */
 struct tNo *inicia(char valor)
 {
   struct tNo *n = (struct tNo *)malloc(sizeof(struct tNo));
@@ -31,6 +33,7 @@ void ajusta_no(struct tNo *no, char decimal)
   no->valor_int = (no->valor_int * 10) + decimal;
 }
 
+/* Monta árvore */
 struct tNo *montaarvore(char *str, int *i)
 {
   struct tNo *no = NULL;
@@ -98,8 +101,6 @@ int main(void)
   scanf("%s", expressao);
 
   n = montaarvore(expressao, &i);
-  /*n = montaarvore("(*(5)(+(420)(33))\n", &i);*/
-  /*n=montaarvore("(A(B(C(D(E)))))\n",&i);*/
 
   printf("%d -- disse o algoritmo, com uma majestade e uma tranquilidade infinitas.\n", posordem(n));
   return 0;
